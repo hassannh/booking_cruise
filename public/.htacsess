@@ -1,0 +1,7 @@
+Options All -Indexes
+
+RewriteEngine On
+
+RewriteBase /BOOKING_CRUISE/
+
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?page=$1
