@@ -1,5 +1,5 @@
 <?php
+// require_once "../app/libraries/Core.php";
+require_once "../App/bootstrap.php";
 
-require_once "../app/bootstrap.php";
-
-$Core =new Core;
+$Core = new Core;
