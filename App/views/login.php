@@ -1,28 +1,9 @@
 <?php
-// require_once "../database/DB.php";
 
-// if (isset($_POST['username'])) {
+require_once "include/navbar.php";
 
-//     $uname = $_POST['username'];
-//     $password = $_POST['password'];
-
-//     $sql = "select * from Loginform where user='" . $uname . "'AND Pass='" . $password . "'
-//     Limit 1";
-
-//     $result = mysql_query($sql);
-
-//     if (mysql_num_rows($result) == 1) {
-
-//         echo " You Have Successfully Logged in";
-//         exit();
-//     } else {
-//         echo " You are not logged";
-//         exit();
-//     }
-// }
 
 ?>
-
 
 <section class="ftco-section">
 		<div class="container">
@@ -34,7 +15,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">
-						<div class="img" style="background-image: url(images/bg-1.jpg);">
+						<div class="img" style="background-image: url(./include/images/bg-1.jpg);">
 			      </div>
 						<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
