@@ -12,7 +12,8 @@ define('DB_NAME' , 'booking_cruise');
 define('APPROOT', dirname(dirname(__FILE__)));
 
 //url root
-define('URLROOT','http://localhost/booking_cruise');
+define('URLROOT','http://localhost/booking_cruise/');
+define('CSS','http://localhost/booking_cruise/App/views/include/css/style.css');
 
 //site name
 define('SITENAME', 'booking_cruise');
