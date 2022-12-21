@@ -1,29 +1,32 @@
 <?php
 
-
-if($_SERVER["REQUEST_METHOD"]=="post")
+class userController extends Controller{
+function __construct()
 {
-    $usernam = $_POST['usernam'];
+    $this->user = $this->model('user');
+}
+
+public function login(){
+
+    
+
+    if($_SERVER["REQUEST_METHOD"]=="POST")
+{
+    $usernam = $_POST['username'];
     $password = $_POST['password'];
+    $role = $this->user->dbform($usernam,$password);
+    if($role=='Admin'){
+        
+    }else {
+        die('errrr');
+    }
+}
 
-    $sql = "SELECT * FROM users WHERE username = '".$usernam."' AND pass = '".$password."'";
-    $result = mysqli_query($connect,$sql);
-    $row = mysqli_fetch_array($result);
+}
 }
 
 
 
-if($row["Role"]=="user")
-{
-    header("location: booking.php");
-}
-elseif($row["Role"]=="Admin"){
-    header("location: Admin.php");
-    exit();
-}
 
-else{
-    echo "username or password incorrect";
-}
 
 

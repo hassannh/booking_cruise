@@ -1,6 +1,7 @@
 <?php
 
 require_once "include/navbar.php";
+// require '../libraries/DB.php';
 
 
 ?>

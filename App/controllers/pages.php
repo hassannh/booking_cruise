@@ -7,7 +7,8 @@ class Pages extends Controller
 {
     public function __construct()
     {
-        // var_dump('pages loaded');
+        //  $this->postmodel = $this->model('Post');
+        $this->user = $this->model('user');
 
     }
 
@@ -62,13 +63,23 @@ class Pages extends Controller
     
 
     public function login(){
+        if($_SERVER["REQUEST_METHOD"]=="POST")
+        {
+            $usernam = $_POST['username'];
+            $password = $_POST['password'];
+            $role = $this->user->dbform($usernam,$password);
+            if($role=='Admin'){
+                die('hassan');
+            }else {
+                die('errrr');
+            }
+        }else{
         $data = [
             'title' => 'login'
         ];
         $this->view('login', $data);
     }
 }
+}
 
 
-
-?>

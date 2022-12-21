@@ -1,8 +1,9 @@
-edite
+
 
 <?php
-require APPROOT . 'views/include/head.php';
+// require 'include/head.php';
+// require 'include/navbar.php';
 
+echo 'edite';
 
-require APPROOT . 'views/include/footer.php';
 ?>
