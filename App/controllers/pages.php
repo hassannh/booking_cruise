@@ -69,9 +69,9 @@ class Pages extends Controller
             $password = $_POST['password'];
             $role = $this->user->dbform($usernam,$password);
             if($role=='Admin'){
-                die('hassan');
+                die('welcome');
             }else {
-                die('errrr');
+                die('error');
             }
         }else{
         $data = [
@@ -80,6 +80,17 @@ class Pages extends Controller
         $this->view('login', $data);
     }
 }
+
+
+public function signUp(){
+    $data = [
+        'title' => 'signUp'
+    ];
+    $this->view('signUp', $data);
+}
+
+
+
 }
 
 

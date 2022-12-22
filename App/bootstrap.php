@@ -6,13 +6,13 @@ require_once "views/include/navbar.php";
 
 //load config
 
- require_once "libraries/DB.php";
- require_once "libraries/Core.php";
- require_once "libraries/Controller.php";
+//  require_once "libraries/DB.php";
+//  require_once "libraries/Core.php";
+//  require_once "libraries/Controller.php";
 
-// spl_autoload_register(function($classname){
-//     require_once 'libraries/' . $classname .'.php';
-// });
+spl_autoload_register(function($classname){
+    require_once 'libraries/' . $classname .'.php';
+});
 
 
 
