@@ -18,14 +18,19 @@ public function dbform($usernam,$password){
     $data = $stmt->fetch();
     $role = $data["Role"];
     if($role == "user") {
-        return $role;
+        echo $role;
         
 
     } else if($role == "Admin") {
-        return $role;
-        
-     
+        echo $role;     
 }
 
 }
+
+public function signUp($name,$email,$password){
+
+    $stm = "INSERT INTO users (name,email,password) VALUE ('$name','$email','$password')";
+    
+}
+
 }
