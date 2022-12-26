@@ -9,20 +9,26 @@ class Pages extends Controller
     {
         //  $this->postmodel = $this->model('Post');
         $this->user = $this->model('user');
-
     }
 
-    public function home(){
+    public function index()
+    {
+        echo "hi";
+    }
+
+    public function home()
+    {
 
         $data = [
             'title' => 'HomePage'
         ];
 
-         $this->view('home',$data);
+        $this->view('home', $data);
     }
 
 
-    public function booking(){
+    public function booking()
+    {
         $data = [
             'title' => 'booking'
         ];
@@ -30,7 +36,8 @@ class Pages extends Controller
     }
 
 
-    public function add(){
+    public function add()
+    {
         $data = [
             'title' => 'add'
         ];
@@ -38,7 +45,8 @@ class Pages extends Controller
     }
 
 
-    public function Admin(){
+    public function Admin()
+    {
         $data = [
             'title' => 'Admin'
         ];
@@ -46,7 +54,8 @@ class Pages extends Controller
     }
 
 
-    public function edite(){
+    public function edite()
+    {
         $data = [
             'title' => 'edite'
         ];
@@ -54,43 +63,29 @@ class Pages extends Controller
     }
 
 
-    public function Contact(){
+    public function Contact()
+    {
         $data = [
             'title' => 'Contact'
         ];
         $this->view('Contact', $data);
     }
-    
 
-    public function login(){
-        if($_SERVER["REQUEST_METHOD"]=="POST")
-        {
-            $usernam = $_POST['username'];
-            $password = $_POST['password'];
-            $role = $this->user->dbform($usernam,$password);
-            if($role=='Admin'){
-                die('welcome');
-            }else {
-                die('error');
-            }
-        }else{
+
+    public function login()
+    {
         $data = [
             'title' => 'login'
         ];
         $this->view('login', $data);
     }
+
+
+    public function register()
+    {
+        $data = [
+            'title' => 'register'
+        ];
+        $this->view('register', $data);
+    }
 }
-
-
-public function signUp(){
-    $data = [
-        'title' => 'signUp'
-    ];
-    $this->view('signUp', $data);
-}
-
-
-
-}
-
-

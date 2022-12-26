@@ -10,31 +10,106 @@
 class DB {
     private static ?\PDO $instance = null;
     
+    private $host = DB_HOST;
+    private $user = DB_USER;
+    private $password = DB_PASS;
+    private $dbname = DB_NAME;
+
+    private $pdo;
+    private $stmt;
     
-    public static function connection()
+    public function __construct()
     {
-        $host = DB_HOST;
-        $user = DB_USER;
-        $pass = DB_PASS;
-        $dbname = DB_NAME;
-        //set DSN
-        $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-        
-        if (self::$instance == null) {
-            try{
-                self::$instance = new PDO($dsn,$user, $pass);
-                self::$instance->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$instance->query('SET NAMES utf8');
-				self::$instance->query('SET CHARACTER SET utf8');
-            }catch(PDOException $e){
-                echo 'failed' . $e->getMessage();
-            }
-        } 
-        return self::$instance;
-        
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+        try{
+            $this->pdo = new PDO($dsn,$this->user,$this->password);
+        }catch(PDOException $e){
+            die("there is an issue: " . $e->getMessage());
+        }
     }
 
-}
+    public function __destruct()
+    {
+        if ($this->stmt != null){
+            $this->stmt = null;
+        }
+        if ($this->pdo != null){
+            $this->pdo = null;
+        }
+    }
+
+    public function query($sql)
+    {
+        $this->stmt->pdo->prepare($sql);
+    }
+
+    public function bind($param, $value, $type=null)
+    {
+        if(is_null($type))
+        {
+            switch(true)
+            {
+                case is_int($value);
+                $type = pdo::PARAM_INT;
+                break;
+
+                case is_bool($value);
+                $type = pdo::PARAM_BOOL;
+                break;
+
+                case is_null($value);
+                $type = pdo::PARAM_NULL;
+                break;
+                default:
+                $type = pdo::PARAM_STR;
+            }
+        }
+            $this->stmt->bindValue($param,$value,$type);
+    }
+
+        public function execute()
+        {
+            return $this->stmt->execute();
+        }
+
+        //data fetch
+
+        public function fetchAll()
+        {
+            $this->stmt->execute();
+            $result = $this->stmt->fetchAll();
+            return $result;
+        }
+
+        public function fetch()
+        {
+            $this->stmt->execute();
+        }
+        //row count
+        public function rowCount()
+        {
+            return $this->stm->rowCount();
+        }
+
+
+    
+    //     $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
+        
+    //     if (self::$instance == null) {
+    //         try{
+    //             self::$instance = new PDO($dsn,$user, $pass);
+    //             self::$instance->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //             self::$instance->query('SET NAMES utf8');
+	// 			self::$instance->query('SET CHARACTER SET utf8');
+    //         }catch(PDOException $e){
+    //             echo 'failed' . $e->getMessage();
+    //         }
+    //     } 
+    //     return self::$instance;
+        
+     }
+
+
 
 
 
