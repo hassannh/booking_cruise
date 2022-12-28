@@ -8,7 +8,7 @@
 //return rows and results
 
 class DB {
-    private static ?\PDO $instance = null;
+    // private static ?\PDO $instance = null;
     
     private $host = DB_HOST;
     private $user = DB_USER;
@@ -21,6 +21,12 @@ class DB {
     public function __construct()
     {
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+        
+        $options = array(
+
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        );
         try{
             $this->pdo = new PDO($dsn,$this->user,$this->password);
         }catch(PDOException $e){
@@ -40,7 +46,7 @@ class DB {
 
     public function query($sql)
     {
-        $this->stmt->pdo->prepare($sql);
+      return  $this->stmt = $this->pdo->prepare($sql);
     }
 
     public function bind($param, $value, $type=null)
@@ -77,18 +83,18 @@ class DB {
         public function fetchAll()
         {
             $this->stmt->execute();
-            $result = $this->stmt->fetchAll();
-            return $result;
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);
         }
-
+    
         public function fetch()
         {
             $this->stmt->execute();
+            return $this->stmt->fetch(PDO::FETCH_OBJ);
         }
         //row count
         public function rowCount()
         {
-            return $this->stm->rowCount();
+            return $this->stmt->rowCount();
         }
 
 

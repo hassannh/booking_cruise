@@ -2,7 +2,13 @@
 
   <!-- Sidebar -->
   <aside class="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
-    <!-- profile -->
+    
+  <!-- Admin -->
+    <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+      <a href="login"><i class='fa fa-user'></i></a>      
+    </div>
+  
+  <!-- user -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
       <a href="login"><i class="fa fa-user"></i></a>
     </div>
@@ -33,10 +39,16 @@
       <div class="flex flex-shrink-0 items-center space-x-4 text-white">
         
        
-        
+      <select name="select" id="">
+        <option value="">login</option>
+        <option value="">register</option>
+      </select>
+
+      <button> <a href="<?php echo URLROOT . 'usersContoller/logOut' ?>">logOut</a> </button>
         <!--logo picture-->
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"> <i href="home"><img src="<?php echo URLROOT;?>/public/img/LayCRUISE.png" alt="cruise logo"></i></div>
       </div>
+
     </header>
 
     <!-- Main -->

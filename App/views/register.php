@@ -1,41 +1,29 @@
 
-    <div class="">
-        <div class="">
-            <div class="">
-                <h2>Create Account</h2>
-                <span class="">Please fill all the information to Create your Account</span>
-                <form action="login" method="POST">
-                    <!-- name input -->
-                    <div class="">
-                        <span for="name">Name<sup>*</sup></span>
-                        <input type="text" name="userName" value="<?= $data['name'] ?>" class="<?= (!empty($data['name_err']) ? 'is-invalid' : '') ?>">
-                        <span Class=""><?php echo $data['name_err'] ?></span>
-                    </div>
-                    <!-- email input -->
-                    <div class="form-group">
-                        <span for="email">Email<sup>*</sup></span>
-                        <input type="email " name="userEmail" value="<?= $data['email'] ?>" class="<?= (!empty($data['email_err']) ? 'is-invalid' : '') ?>">
-                        <span Class=""><?php echo $data['email_err'] ?></span>
-                    </div>
-                    <!-- password input -->
-                    <div class="form-group">
-                        <span for="password">Password<sup>*</sup></span>
-                        <input type="password" name="userPassword" value="<?= $data['password'] ?>" class="<?= (!empty($data['password_err']) ? 'is-invalid' : '') ?>">
-                        <span Class=""><?php echo $data['password_err'] ?></span>
-                    </div>
-                    <!-- password-confirm input -->
-                    <div class="form-group">
-                        <span for="confirm-password">Password confirm<sup>*</sup></span>
-                        <input type="password" name="userConfirmPassword" value="<?= $data['userConfirmPassword'] ?>" class="<?= (!empty($data['confirm-password_err']) ? 'is-invalid' : '') ?>">
-                        <span Class=""><?php echo $data['confirm-password_err'] ?></span>
-                    </div>
-                    <div>
-                        <input type="submit" value="Register" class="btn btn-success">
-                        <a href="<?= URLROOT ?>App/views/login" class="">Have you an account ? Log In </a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
 
+
+
+
+
+<form action="<?php echo URLROOT;?>/usersController/register" method="POST">
+<div class="shadow-xl p-10 bg-white max-w-xl rounded">
+    <h1 class="text-4xl font-black mb-4">signUp</h1>
+    <div class="mb-4 relative">
+        <input class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" name="name" type="text" autofocus>
+        <label for="name" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">name</label>
+    </div>
+    <div class="mb-4 relative">
+        <input class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" name="email" type="text" autofocus>
+        <label for="email" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">email</label>
+        <p class="alert alert-danger"></p>
+    </div>
+    <div class="mb-4 relative">
+        <input class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" name="password" type="password" autofocus>
+        <label for="password" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">password</label>
+    </div>
+    <div class="mb-4 relative">
+        <input class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" name="confirm-password" type="password" autofocus>
+        <label for="password" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Confirm Password</label>
+    </div>
+    <button class="bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded" type="submit">Submit</button>
+</div>*
+</form>
