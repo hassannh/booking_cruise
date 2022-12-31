@@ -21,7 +21,7 @@
     <!-- tickets -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
       
-      <a href="booking"><i class="fa fa-ticket"></i></a>
+      <a href="pages/booking"><i class="fa fa-ticket"></i></a>
     </div>
 
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
@@ -38,13 +38,8 @@
       <!-- Informação -->
       <div class="flex flex-shrink-0 items-center space-x-4 text-white">
         
-       
-      <select name="select" id="">
-        <option value="">login</option>
-        <option value="">register</option>
-      </select>
 
-      <button> <a href="<?php echo URLROOT . 'usersContoller/logOut' ?>">logOut</a> </button>
+      <button> <a href="<?php echo URLROOT . 'usersController/logOut' ?>">logOut</a> </button>
         <!--logo picture-->
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"> <i href="home"><img src="<?php echo URLROOT;?>/public/img/LayCRUISE.png" alt="cruise logo"></i></div>
       </div>

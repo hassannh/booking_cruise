@@ -11,10 +11,10 @@ class Pages extends Controller
         $this->user = $this->model('user');
     }
 
-    public function index()
+   /*  public function index()
     {
         echo "hi";
-    }
+    } */
 
     public function home()
     {

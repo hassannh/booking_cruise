@@ -24,16 +24,20 @@ class Core{
                 $this->currentController = ucwords($url[0]);
                 //unset 0 index
                 unset($url[0]);
+            }else{
+               // exit();
+               echo 'controller not found' ;
             }
-        }
-        
-
         //require the controller
         require_once '../App/controllers/'. $this->currentController . '.php';
 
         //instantiate controller class
         $this->currentController = new $this->currentController;
+        }
+        
 
+        
+echo $url[1];
         //check for second part of url
         if(isset($url[1])){
             //check to see if method exists in controller
@@ -41,15 +45,17 @@ class Core{
             if(method_exists($this->currentController, $url[1]))
             {
                 $this->currentMethod = $url[1];
-
+                var_dump($this->currentMethod);
                 unset($url[1]);
             }
+//get params
+$this->params = $url ? array_values($url) : [];
+//call a callback with array of params
 
+
+call_user_func_array([$this->currentController, $this->currentMethod] , $this->params);
         }
-        //get params
-        $this->params = $url ? array_values($url) : [];
-        //call a callback with array of params
-        call_user_func_array([$this->currentController, $this->currentMethod] , $this->params);
+        
     }
 
     public function geturl(){
@@ -62,7 +68,5 @@ class Core{
         }
     }
 }
-
-
 
 ?>

@@ -67,20 +67,12 @@ class usersController extends Controller
             //     die($user);
             // }
         } else {
-            // here we load the form
-            // init data
-            $data = [
-                'email' => '',
-                'password' => '',
-                'email_error' => '',
-                'password_error' => ''
-            ];
         
             // Load view
-            $this->view('booking', $data);
+            $this->view('login');
         }
         
-        }
+    }
         public function createUserSession($user){
             $_SESSION['Id'] = $user->Id;
             $_SESSION['email'] = $user->email;
@@ -91,16 +83,17 @@ class usersController extends Controller
             // $_SESSION['is_user'] = 'block';
           }
 
-          public function logOut(){
+        public function logOut(){
 
            unset($_SESSION['id'] ) ;
            unset($_SESSION['email']) ;
            unset($_SESSION['name']) ;
 
            session_destroy();
+
            $this->view('login');
 
-          }
+        }
 
 
     /////////////////////////////////////////////////////////////////
@@ -183,6 +176,10 @@ class usersController extends Controller
             // load the view
             $this->view('register', $data);
         }
+    }
+    public function index()
+    {
+        echo 'zabi';
     }
 }
 
