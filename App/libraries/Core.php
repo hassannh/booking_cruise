@@ -45,7 +45,7 @@ echo $url[1];
             if(method_exists($this->currentController, $url[1]))
             {
                 $this->currentMethod = $url[1];
-                var_dump($this->currentMethod);
+                // var_dump($this->currentMethod);
                 unset($url[1]);
             }
 //get params
