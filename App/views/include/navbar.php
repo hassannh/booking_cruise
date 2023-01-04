@@ -5,28 +5,28 @@
     
   <!-- Admin -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-      <a href="login"><i class='fa fa-user'></i></a>      
+      <a href="<?=URLROOT?>cruiseController/admin"><i class='fa fa-user'></i></a>      
     </div>
   
   <!-- user -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-      <a href="login"><i class="fa fa-user"></i></a>
+      <a href="<?=URLROOT?>usersController/login"><i class="fa fa-user"></i></a>
     </div>
 
     <!-- Home -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-      <a href="home"><i class="fa fa-home"></i></a>
+      <a href="<?=URLROOT?>pages/home"><i class="fa fa-home"></i></a>
     </div>
 
     <!-- tickets -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
       
-      <a href="pages/booking"><i class="fa fa-ticket"></i></a>
+      <a href="<?=URLROOT?>pages/booking"><i class="fa fa-ticket"></i></a>
     </div>
 
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
      
-      <a href="contact"><i class="fa fa-phone"></i></a>
+      <a href="<?=URLROOT?>pages/contact"><i class="fa fa-phone"></i></a>
     </div>
   </aside>
 

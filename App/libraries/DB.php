@@ -1,6 +1,4 @@
 <?php
-
-
 //PDO database
 //connect to database
 //creat prepared statments

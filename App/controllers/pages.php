@@ -8,7 +8,7 @@ class Pages extends Controller
     public function __construct()
     {
         //  $this->postmodel = $this->model('Post');
-        $this->user = $this->model('user');
+        $this->User = $this->model('user');
     }
 
    /*  public function index()
@@ -53,6 +53,14 @@ class Pages extends Controller
         $this->view('Admin', $data);
     }
 
+    public function ticket()
+    {
+        $data = [
+            'title' => 'ticket'
+        ];
+        $this->view('ticket', $data);
+    }
+
 
     public function edite()
     {
@@ -87,5 +95,9 @@ class Pages extends Controller
             'title' => 'register'
         ];
         $this->view('register', $data);
+    }
+
+    public function index(){
+        echo 'hey';
     }
 }

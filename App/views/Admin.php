@@ -18,7 +18,7 @@
 
 
 <!-- This is an example component -->
-<div class="max-w-2xl mx-auto mt-6">
+<div class="w-3/4 mx-auto mt-6">
 
 	<div class="flex flex-col">
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
@@ -44,7 +44,8 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
 
-                    <?php foreach($data['cruises']  as $cruise) : ?>
+                   
+                    <?php foreach($data["cruises"]  as $cruise) : ?>
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                          
                             <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $cruise-> name?></td>
@@ -54,7 +55,7 @@
                                 <a href="<?= URLROOT?>cruiseController/delete_cruise/<?= $cruise-> ID_cruise ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                             </td>
                         </tr>
-                      <?php endforeach ?>
+                      <?php endforeach; ?>
                   
                     </tbody>
                 </table>

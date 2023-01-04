@@ -179,7 +179,7 @@ class usersController extends Controller
     }
     public function index()
     {
-        echo 'zabi';
+        $this->view('home');
     }
 }
 
