@@ -16,6 +16,14 @@ class Cruise{
         return $this->db->fetchAll();
       
     }
+    public function getCruise($id)
+    {
+        $this->db->query("SELECT * FROM cruise WHERE ID_cruise=:id");
+        $this->db->bind(':id',$id);
+        $this->db->execute();
+        return $this->db->fetch();
+      
+    }
 
 
     public function insertCruise($name, $ship ,$price ,$nights,$ports){

@@ -17,13 +17,13 @@ class Core
     {
         $url = $this->getUrl();
         if (isset($url[0])) {
-            if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+            if (file_exists('../App/controllers/' . ucwords($url[0]) . '.php')) {
                 $this->Controller = ucwords($url[0]);
             }
             unset($url[0]);
         }
         //require the controller
-        require_once '../app/controllers/' . $this->Controller . '.php';
+        require_once '../App/controllers/' . $this->Controller . '.php';
 
         //instantiation of controller
         $this->Controller = new $this->Controller;

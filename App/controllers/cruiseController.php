@@ -3,9 +3,15 @@
 class cruiseController extends Controller
 {
     private $cruiseModel;
+    private $bookingModel;
+    private $type_roomModel;
+    private $roomModel;
     public function __construct()
     {
         $this->cruiseModel = $this->model('Cruise');
+        $this->bookingModel = $this->model('booking');
+        $this->type_roomModel = $this->model('RoomTypes');
+        $this->roomModel = $this->model('Room');
         
     }
 
@@ -66,8 +72,58 @@ class cruiseController extends Controller
 
     public function book_now($id)
     {   
-        $this->view('ticket');
+        $cruise = $this->cruiseModel->getCruise($id);
+        $reservation = $this->bookingModel->getBooking($id);
+        $data=[
+            'cruise'=> $cruise,
+            'reservation' => $reservation
+        ];
+        // echo '<pre>';
+        // var_dump($data);
+        // die();
+        // echo '</pre>';
 
+        $this->view('ticket',$data);
+
+    }
+
+
+    public function order($id)
+    {
+        $cruise = $this->cruiseModel->getCruise($id);
+        $room_type = $this->type_roomModel->getRoomTypes();
+        $data = [
+            'cruise'=>$cruise,
+            'roomType'=> $room_type
+        ];
+        $this->view('addReservation',$data);
+    }
+
+
+
+    public function insertAllinfo()
+    {
+        // var_dump($_SESSION);
+        // exit;
+       
+            // header('location:'.URLROOT."usersController/login");
+
+        $room = $_POST['id_roomType_price'];
+        $roomTypeArray = explode(" ", $room);
+        $id_roomType = $roomTypeArray[0];
+        $priceRoomType = $roomTypeArray[1];
+        $bookingDate = $_POST["date"];
+        $totalPrice = (float)$_POST["Price"] + (float)$priceRoomType;
+        $id_cruise = $_POST["id_cruise"];
+        // $id_user =  $_SESSION['Id'];
+        }
+    
+
+
+    public function delete_ticket($id)
+    {
+        $this->bookingModel->deleteBooking($id);
+        $this->view('booking');
     }
 }
 
