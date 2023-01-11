@@ -6,12 +6,15 @@ class cruiseController extends Controller
     private $bookingModel;
     private $type_roomModel;
     private $roomModel;
+    private $reservationModel;
+    private $portModel;
     public function __construct()
     {
         $this->cruiseModel = $this->model('Cruise');
         $this->bookingModel = $this->model('booking');
         $this->type_roomModel = $this->model('RoomTypes');
         $this->roomModel = $this->model('Room');
+        $this->reservationModel = $this->model('reservation');
         
     }
 
@@ -103,11 +106,8 @@ class cruiseController extends Controller
 
     public function insertAllinfo()
     {
-        // var_dump($_SESSION);
-        // exit;
-       
             // header('location:'.URLROOT."usersController/login");
-
+        // var_dump($_POST);
         $room = $_POST['id_roomType_price'];
         $roomTypeArray = explode(" ", $room);
         $id_roomType = $roomTypeArray[0];
@@ -115,8 +115,20 @@ class cruiseController extends Controller
         $bookingDate = $_POST["date"];
         $totalPrice = (float)$_POST["Price"] + (float)$priceRoomType;
         $id_cruise = $_POST["id_cruise"];
-        // $id_user =  $_SESSION['Id'];
+        $id_user =  1;
+        $this->reservationModel->insertReservation($id_user,$bookingDate,$totalPrice,$id_roomType, $id_cruise);
+        die;
         }
+
+
+        public function getPort()
+{
+    $port = $this->portModel->getport();
+    $data=[
+        'port'=>$port
+    ];
+    $this->view('booking',$data);
+}
     
 
 

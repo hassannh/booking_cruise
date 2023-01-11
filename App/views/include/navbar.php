@@ -21,7 +21,7 @@
     <!-- tickets -->
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
       
-      <a href="<?=URLROOT?>pages/booking"><i class="fa fa-ticket"></i></a>
+      <a href="<?=URLROOT?>cruiseController/booking"><i class="fa fa-ticket"></i></a>
     </div>
 
     <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">

@@ -13,7 +13,7 @@ class port{
     public function getport(){
         $stmt= $this->db->query("SELECT * FROM port ");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll();
       
      
          }
@@ -24,13 +24,13 @@ class port{
         $sql =("INSERT INTO 'port'(name) VALUES (:name) ");
         
         $stmt=$this->db->query($sql);
-        $stmt->bindValue(':name',$name,PDO::PARAM_STR);
+        $stmt->bindValue(':name',$name);
         $stmt->execute();
         if ($stmt->rowCount()>0) {
             return true;
-         } else {
-             return false;
-         }
+        } else {
+            return false;
+        }
            
     }
 
@@ -38,7 +38,7 @@ class port{
     public function deleteport ($id){
         $sql ="DELETE FROM port WHERE id=:id";
        $stmt= $this->db->query($sql);
-       $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+       $stmt->bindValue(':id',$id);
       }
 
 

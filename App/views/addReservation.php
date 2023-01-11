@@ -28,8 +28,7 @@
         <label for="id_roomType_price">room type</label>
         <select name="id_roomType_price"  required="required">
             <option selected disabled>room type</option>
-            <?php foreach ($data['roomType'] as $roomType) : 
-            ?>
+            <?php foreach ($data['roomType'] as $roomType) : ?>
             <option value="<?=$roomType->id . ' ' . $roomType->price?>">
                 <?= $roomType->name .':'. $roomType->price .' $'?>
             </option>
