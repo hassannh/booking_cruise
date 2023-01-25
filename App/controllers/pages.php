@@ -5,16 +5,12 @@
 
 class Pages extends Controller
 {
+    public $User;
     public function __construct()
     {
         //  $this->postmodel = $this->model('Post');
         $this->User = $this->model('user');
     }
-
-   /*  public function index()
-    {
-        echo "hi";
-    } */
 
     public function home()
     {

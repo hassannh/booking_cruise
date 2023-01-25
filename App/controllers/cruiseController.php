@@ -54,12 +54,11 @@ class cruiseController extends Controller
            
             
             $this->cruiseModel->insertCruise($name,$ship ,$price ,$nights,$ports);
-            $this->view('add');
+            return $this->Admin();
         }else{
-            $this->view('add');
+            $this->view('add_cruise');
         }
         
-    
     }
 
 
@@ -69,6 +68,7 @@ class cruiseController extends Controller
         $data=[
             'cards'=>$cards
         ];
+
         $this->view('booking',$data);
     }
 
@@ -81,11 +81,7 @@ class cruiseController extends Controller
             'cruise'=> $cruise,
             'reservation' => $reservation
         ];
-        // echo '<pre>';
-        // var_dump($data);
-        // die();
-        // echo '</pre>';
-
+     
         $this->view('ticket',$data);
 
     }

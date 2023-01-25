@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-<a href="<?= URLROOT?>cruiseController/add_cruise" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Item</a>
+<a href="<?= URLROOT?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Item</a>
 </div>
 
 

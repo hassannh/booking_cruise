@@ -13,6 +13,7 @@ class Controller
         //instatiate model
         return new $model();
     }
+
     //load view
     public function view($view ,$data = [])
     {
