@@ -9,13 +9,13 @@ class booking{
     }
 
 
-    public function getBookings()
-    {
-        $this->db->query("SELECT * FROM reservation ");
-        $this->db->execute();
-        return $this->db->fetchAll();
+    // public function getBookings()
+    // {
+    //     $this->db->query("SELECT * FROM reservation ");
+    //     $this->db->execute();
+    //     return $this->db->fetchAll();
       
-    }
+    // }
     public function getBooking($id)
     { 
         $this->db->query("SELECT * FROM reservation WHERE id_reservation = :id");

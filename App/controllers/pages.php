@@ -84,7 +84,6 @@ class Pages extends Controller
         $this->view('login', $data);
     }
 
-
     public function register()
     {
         $data = [
@@ -92,7 +91,15 @@ class Pages extends Controller
         ];
         $this->view('register', $data);
     }
+    public function book_now()
+    {
+        $data = [
+            'title' => 'book_now'
+        ];
+        $this->view('book_now', $data);
+    }
 
+    
     public function index(){
         echo 'hey';
     }

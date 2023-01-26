@@ -49,11 +49,12 @@ class cruiseController extends Controller
             $name = $_POST['name'];
             $ship = $_POST['ship'];
             $price = $_POST['price'];
+            $picture = $_POST['picture'];
             $nights = $_POST['nights'];
             $ports = $_POST['ports'];
            
             
-            $this->cruiseModel->insertCruise($name,$ship ,$price ,$nights,$ports);
+            $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports);
             return $this->Admin();
         }else{
             $this->view('add_cruise');
@@ -74,8 +75,9 @@ class cruiseController extends Controller
 
 
     public function book_now($id)
-    {   
+    {  
         $cruise = $this->cruiseModel->getCruise($id);
+
         $reservation = $this->bookingModel->getBooking($id);
         $data=[
             'cruise'=> $cruise,
@@ -95,7 +97,7 @@ class cruiseController extends Controller
             'cruise'=>$cruise,
             'roomType'=> $room_type
         ];
-        $this->view('addReservation',$data);
+        $this->view('book_now',$data);
     }
 
 
@@ -113,7 +115,8 @@ class cruiseController extends Controller
         $id_cruise = $_POST["id_cruise"];
         $id_user =  1;
         $this->reservationModel->insertReservation($id_user,$bookingDate,$totalPrice,$id_roomType, $id_cruise);
-        die;
+        
+        $this->view('home');
         }
 
 

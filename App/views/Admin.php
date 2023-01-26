@@ -1,21 +1,5 @@
 
 
-<!-- <table class="controll_cruise">
-    <thead>
-
-        <th>#ID</th>
-        <th>shipName</th>
-        <th>Price</th>
-        <th>nights_number</th>
-        <th>Adding Date</th>
-        <th>control</th>
-
-    </thead> -->
- 
-<!-- </table> -->
-
-
-
 
 <!-- This is an example component -->
 <div class="w-3/4 mx-auto mt-6">
