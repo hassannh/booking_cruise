@@ -21,7 +21,7 @@ class RoomTypes{
 
     public function insertRoomTypes($name,$price,$capacity){
      
-        $sql =("INSERT INTO 'room_type'(name ,price,capacity) VALUES (:name,:price,:capacity) ");
+        $sql =("INSERT INTO room_type(name ,price,capacity) VALUES (:name,:price,:capacity) ");
         
         $this->db->query($sql);
         $this->db->bind(':name',$name);

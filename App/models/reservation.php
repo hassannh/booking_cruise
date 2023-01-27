@@ -37,14 +37,24 @@ class Reservation{
         return $this->db->fetch();
 
     }
+    // public function getreservationByUserID($id)
+    // {
+    //     $sql = "SELECT * FROM reservation WHERE ID_user = :id";
+    //     $this->db->query($sql);
+    //     $this->db->bind(':id',$id);
+    //     $this->db->execute();
+    //     return $this->db->fetchAll();
+
+    // }
     public function getreservationByUserID($id)
     {
-        $sql = "SELECT * FROM reservation WHERE ID_user = :id";
+        $sql = "SELECT u.Id,r.*,c.* FROM users u,reservation r,cruise c WHERE u.Id=r.ID_user AND r.ID_cruise=c.ID_cruise AND u.Id=:id";
         $this->db->query($sql);
         $this->db->bind(':id',$id);
         $this->db->execute();
         return $this->db->fetchAll();
 
     }
+
 
 }

@@ -78,53 +78,70 @@ class cruiseController extends Controller
     {
         if(isset($_POST['submit'])){
 
-        $ID_cruise=(int)$_POST['id_cruise'];
-        $Price=(float)$_POST['Price'];
-        $date_reservation=$_POST['date'];
+        $ID_cruise = (int)$_POST['id_cruise'];
+       
 
-        $id_roomType_price=$_POST['id_roomType_price'];
-        $roomTypeArray= explode(' ',$id_roomType_price);
+        $Price = (float)$_POST['Price'];
+        $date_reservation = $_POST['date'];
+
+        $id_roomType_price = $_POST['id_roomType_price'];
+        $roomTypeArray = explode(' ',$id_roomType_price);
 
         $id_type_room=(int)$roomTypeArray[0];
         $price_room=(float)$roomTypeArray[1];
 
-        $price_reservation=(float)$Price+(float)$price_room;
+        $price_reservation = (float)$Price+(float)$price_room;
         
         $this->roomModel->insertRoomTypes($id_type_room);
-        $room=$this->roomModel->getRoom($id_type_room);
-        $id_Room=$room->id;
+        $room = $this->roomModel->getRoom($id_type_room);
+        $id_Room = $room->id;
 
-        $ID_user=$_SESSION['Id'];
+        $ID_user = $_SESSION['Id'];
 
-        $this->reservationModel->insertReservation($ID_user, $date_reservation ,$price_reservation ,$id_Room,$ID_cruise);
+        $this->reservationModel->insertReservation($ID_user, $date_reservation ,$price_reservation ,$id_Room,$ID_cruise); 
+        
         $this->book_now($ID_cruise);
         }else{
-            $this->booking();
+            $this->view('booking');
         }
     }
 
-    public function showtickets()
+    public function ticket()
     {
-        $this->view('ticket');
+       
+        $ID_user = $_SESSION['Id'];
+    
+        $reservation = $this->reservationModel->getreservationByUserID($ID_user);
+  
+        // $cruise = $this->cruiseModel->getCruise();
+        
+        $data=[
+            // 'cruise'=> $cruise,
+            'reservations'=>$reservation
+        ];
+        
+    
+        $this->view('ticket',$data);
+        
     }
 
     public function book_now($id)
     {  
-            $ID_user=$_SESSION['Id'];
+            $ID_user = $_SESSION['Id'];
 
-            $reservations = $this->reservationModel->getreservationByUserID($ID_user);
+            $reservation = $this->reservationModel->getreservationByUserID($ID_user);
 
-            $cruise = $this->cruiseModel->getCruise($id);
+            // $cruise = $this->cruiseModel->getCruise($id);
             
             
             $data=[
-                'cruise'=> $cruise,
-                'reservations' => $reservations
+                // 'cruise'=> $cruise,
+                'reservations' => $reservation
             ];
             
             $this->view('ticket',$data);
-        
 
+        
     }
 
 
@@ -143,8 +160,7 @@ class cruiseController extends Controller
 
     public function insertAllinfo()
     {
-            // header('location:'.URLROOT."usersController/login");
-        // var_dump($_POST);
+        
         $room = $_POST['id_roomType_price'];
         $roomTypeArray = explode(" ", $room);
         $id_roomType = $roomTypeArray[0];
@@ -174,7 +190,7 @@ class cruiseController extends Controller
     {
        
         $this->bookingModel->deleteBooking($id);
-        $this->booking();
+        $this->ticket();
     }
 }
 

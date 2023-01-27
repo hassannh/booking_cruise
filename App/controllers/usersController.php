@@ -58,14 +58,7 @@ class usersController extends Controller
         
             $email = $data['email'];
             $password = $data['password'];
-            // $role = $this->user->dbform($email, $password);
-            // echo $role;
-            // if ($role == 'Admin') {
-            //     die('welcome Admin');
-            // } else {
-            //     $user =  $this->user->getUserByEmail($email);
-            //     die($user);
-            // }
+            
         } else {
         
             // Load view

@@ -99,6 +99,7 @@ class Pages extends Controller
         $this->view('book_now', $data);
     }
 
+
     
     public function index(){
         echo 'hey';
