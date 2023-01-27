@@ -36,8 +36,6 @@ class cruiseController extends Controller
 
     public function delete_cruise($id){
         $this->cruiseModel->deletecruise($id);
-        // header('location:'.URLROOT.'Admin');
-        // $this->view('Admin',$data);
         return $this->Admin();
     }
 
@@ -132,8 +130,7 @@ class cruiseController extends Controller
             $reservation = $this->reservationModel->getreservationByUserID($ID_user);
 
             // $cruise = $this->cruiseModel->getCruise($id);
-            
-            
+                  
             $data=[
                 // 'cruise'=> $cruise,
                 'reservations' => $reservation
