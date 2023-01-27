@@ -85,7 +85,7 @@ class usersController extends Controller
 
         public function logOut(){
 
-           $_SESSION['id'] = null ;
+           $_SESSION['Id'] = null ;
            $_SESSION['email']= null ;
            $_SESSION['name']= null ;
 

@@ -23,7 +23,7 @@
 
 </style>
 <div class="formReserve ml-6">
-  <form class="ReserveForm" action="<?=URLROOT?>cruiseController/book_now" method="POST">
+  <form class="ReserveForm" action="<?=URLROOT?>cruiseController/reservation" method="POST">
 
     <input type="hidden" name="id_cruise" value="<?= $data['cruise']->ID_cruise ?>">
 
@@ -45,7 +45,7 @@
 
     <div class="reserveSubmit">
       <!-- <input class="btnMe btnMe3"  type="submit" value="Reserve"> -->
-      <button for="submit" name="submit" type="submit" class=""><a  href="<?= URLROOT ?>cruiseController/book_now"></a>book Now</button>
+      <button for="submit" name="submit" type="submit" class="btn bnt primary">book Now</button>
     </div>
   </form>
 </div>
