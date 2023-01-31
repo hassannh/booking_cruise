@@ -15,27 +15,14 @@ class usersController extends Controller
             $_POST = filter_input_array(INPUT_POST);
             $data = [
                 'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
-                'email_error' => '',
-                'password_error' => ''
+                'password' => trim($_POST['password'])
+               
             ];
 
-            
-
-            if (empty($data['email'])) {
-                $data['email_error'] = 'please enter your email';
-            }
-        
-            if (empty($data['password'])) {
-                $data['password_error'] = 'please enter your password';
-            }
         
             if ($this->userModel->getUserByEmail($data['email'])) {
                 // user found
                 
-            } else {
-                // User not found
-                $data['email_error'] = 'No user found';
             }
         
             if (empty($data['email_error']) && empty($data['password_error'])) {
@@ -51,10 +38,7 @@ class usersController extends Controller
                     $data['password_error'] = 'Incorrect password';
                     $this->view('login', $data);
                 }
-            } else {
-                // Load view with errors
-                $this->view('login', $data);
-            }
+            } 
         
             $email = $data['email'];
             $password = $data['password'];
@@ -71,9 +55,7 @@ class usersController extends Controller
             $_SESSION['email'] = $user->email;
             $_SESSION['name'] = $user->name;
             
-            // $_SESSION['user_role'] = $user->role;
-            // $_SESSION['is_admin'] = 'block';
-            // $_SESSION['is_user'] = 'block';
+           
           }
 
         public function logOut(){

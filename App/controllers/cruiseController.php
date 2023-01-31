@@ -111,10 +111,10 @@ class cruiseController extends Controller
     
         $reservation = $this->reservationModel->getreservationByUserID($ID_user);
   
-        // $cruise = $this->cruiseModel->getCruise();
+        
         
         $data=[
-            // 'cruise'=> $cruise,
+          
             'reservations'=>$reservation
         ];
         

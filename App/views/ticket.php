@@ -1,7 +1,5 @@
 <!-- component -->
-<?php foreach ($data['reservations']as$reservation) :
-   
-    ?>
+<?php foreach ($data['reservations'] as $reservation) :?>
     
 <div class="flex flex-col justify-center h-screen ml-16">
     <div class="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
