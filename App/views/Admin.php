@@ -1,13 +1,24 @@
 
+<?php require_once "include/navbar.php"; ?>
+
+
+
+
+
 
 
 <!-- This is an example component -->
 <div class="w-3/4 mx-auto mt-6">
 
-	<div class="flex flex-col">
+    <div class="flex flex-col">
+        <h1 class="text-6xl font-extrabold tracking-tighter text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 mb-4">Dashboard Controller</h1>
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <div class="inline-block min-w-full align-middle">
+
+
             <div class="overflow-hidden ">
+
+
                 <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                     <thead class="bg-gray-100 dark:bg-gray-700">
                         <tr>
@@ -47,7 +58,10 @@
         </div>
     </div>
 </div>
-<a href="<?= URLROOT?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Item</a>
+<a href="<?= URLROOT?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Cruise</a>
+<a href="<?= URLROOT?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Port</a>
+<a href="<?= URLROOT?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Ship</a>
 </div>
 
 
+<?php require_once "include/footer.php"; ?>

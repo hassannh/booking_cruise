@@ -1,3 +1,5 @@
+<?php require_once "include/navbar.php"; ?>
+
 <!-- component -->
 <?php foreach ($data['reservations'] as $reservation) :?>
     
@@ -23,3 +25,6 @@
     </div>
 </div>
 <?php endforeach; ?>
+
+
+<?php require_once "include/footer.php"; ?>

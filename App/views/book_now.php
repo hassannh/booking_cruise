@@ -1,3 +1,7 @@
+<?php require_once "include/navbar.php"; ?>
+
+
+
 <style>
   .formReserve {
     display: flex;
@@ -49,3 +53,7 @@
     </div>
   </form>
 </div>
+
+
+
+<?php require_once "include/footer.php"; ?>

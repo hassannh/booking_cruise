@@ -1,10 +1,12 @@
+<?php require_once "include/navbar.php";?>
+
 <div class="p-8 rounded border border-gray-200">
     <h1 class="font-medium text-3xl">Add cruise</h1>
     <p class="text-gray-600 mt-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos dolorem vel cupiditate laudantium dicta.</p>
     <form method="POST" action="<?= URLROOT ?>cruiseController/add_cruise">
         <div class="mt-8 grid lg:grid-cols-2 gap-4">
             <div>
-                <label for="name" class="text-sm text-gray-700 block mb-1 font-medium">Name</label> 
+                <label for="name" class="text-sm text-gray-700 block mb-1 font-medium">Name</label>
                 <input type="text" name="name" id="name" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Cruise name" />
             </div>
             <div>
@@ -22,9 +24,16 @@
                 <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Ship</label>
                 <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " required="required" name="ship">
                     <option value="" disabled selected>select ship</option>
-                    <option value="1">titanic</option>
-                    <option value="2">shipMaroc</option>
-                    <option value="3">spain_icon</option>
+                   
+
+
+                    <?php foreach ($data['ship'] as $ship) : ?>
+                        <option value="<?= $ship->id?>">
+                            <?= $ship->name?>
+                        </option>
+                    <?php endforeach ?>
+
+
                 </select>
 
             </div>
@@ -33,9 +42,11 @@
                 <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Port</label>
                 <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " required="required" name="ports">
                     <option value="" disabled selected>select port</option>
-                    <option value="madrid-spain">madrid-spain</option>
-                    <option value="marsaille-france">marsaille-france</option>
-                    <option value="tanger-morroco">tanger-morroco</option>
+                    <?php foreach ($data['port'] as $port) : ?>
+                        <option value="<?= $port['name'] ?>">
+                            <?= $port['name']?>
+                        </option>
+                    <?php endforeach ?>
                 </select>
 
             </div>
@@ -61,3 +72,8 @@
         </div>
     </form>
 </div>
+
+
+
+
+<?php require_once "include/footer.php"; ?>

@@ -437,6 +437,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/jquery.js"></script>
 
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
 

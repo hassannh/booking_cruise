@@ -1,7 +1,6 @@
 <?php
 class Cruise{   
     private $db;
-    private $add;
 
     public function __construct()
     {

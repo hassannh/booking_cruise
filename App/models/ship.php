@@ -11,7 +11,7 @@ class ship{
     }
 
     public function getship(){
-        $stmt= $this->db->query("SELECT * FROM ship");
+        $stmt= $this->db->query("SELECT * FROM navire");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
       

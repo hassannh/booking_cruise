@@ -6,9 +6,12 @@
 class Pages extends Controller
 {
     public $User;
+    public $portModel;
+    public $shipModel;
     public function __construct()
     {
-        //  $this->postmodel = $this->model('Post');
+        $this->portModel = $this->model('port');
+        $this->shipModel = $this->model('ship');
         $this->User = $this->model('user');
     }
 
@@ -22,6 +25,8 @@ class Pages extends Controller
         $this->view('home', $data);
     }
 
+    
+
 
     public function booking()
     {
@@ -34,8 +39,12 @@ class Pages extends Controller
 
     public function add()
     {
+        $port = $this->portModel->getport();
+        $ship = $this->shipModel->getship();
         $data = [
-            'title' => 'add'
+            'title' => 'add',
+            'port' => $port,
+            'ship'=>$ship
         ];
         $this->view('add', $data);
     }
@@ -100,8 +109,9 @@ class Pages extends Controller
     }
 
 
-    
-    public function index(){
+
+    public function index()
+    {
         echo 'hey';
     }
 }

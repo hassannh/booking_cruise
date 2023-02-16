@@ -3,7 +3,7 @@
 session_start();
 require_once "config/config.php";
 require_once "views/include/head.php";
-require_once "views/include/navbar.php";
+
 
 
 //load config
@@ -30,7 +30,7 @@ $Core = new Core;
 
 
 
-require_once "views/include/footer.php";
+
 
 
 ?>

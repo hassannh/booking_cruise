@@ -1,4 +1,4 @@
-
+<?php require_once "include/navbar.php"; ?>
 <video autoplay muted loop style="width: 100%;">
     <source src="<?php echo URLROOT;?>/public/img/cover.mp4" type="video/mp4" alt ="ty"/>
 </video>
@@ -60,3 +60,4 @@
       </div>
     </div>
 
+    <?php require_once "include/footer.php"; ?>
