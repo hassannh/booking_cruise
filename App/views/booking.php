@@ -163,7 +163,7 @@
         const prevButton = document.getElementById("prev-button");
 
 
-        const paginationLimit = 5;
+        const paginationLimit = 6;
         const pageCount = Math.ceil(listItems.length / paginationLimit);
         let currentPage = 1;
 

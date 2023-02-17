@@ -189,6 +189,106 @@ class cruiseController extends Controller
         $this->bookingModel->deleteBooking($id);
         $this->ticket();
     }
+
+
+
+    public function trie()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $ship = $_POST['ship'];
+            $port = $_POST['PortArr'];
+            $portDe = $_POST['PortDep'];
+            $date = $_POST['date'];
+
+            if ($ship != 0) {
+                $sqlNav = 'id_nav ='.$ship;
+            }else{
+                $sqlNav = '';
+            }
+
+            if ($port != 0) {
+                $sqlportAR = 'port_dar ='.$port;
+            }else{
+                $sqlportAR = '';
+            }
+            
+            if ($portDe != 0) {
+                $sqlportDe = 'port_dep ='.$portDe;
+            }else{
+                $sqlportDe = '';
+            }
+
+            if ($date != '' && !empty($date)) {
+                $sqldate = 'date_dep ="'.$date.'"';
+            }else{
+                $sqldate = '';
+            }
+
+            $sqlArray = [
+                '0' => $sqlNav,
+                '1' => $sqlportAR,
+                '2' => $sqlportDe,
+                '3' => $sqldate
+            ];
+            $sqlArrayNotEmpty = [];
+            for ($i=0; $i < count($sqlArray); $i++) {
+                if ($sqlArray[$i] != '') {
+                    array_push($sqlArrayNotEmpty, $sqlArray[$i]);
+                }
+            }
+
+            $sql = '';
+            if ( count($sqlArrayNotEmpty) == 0 ) {
+                $sql = '';
+            }
+            if ( count($sqlArrayNotEmpty) == 1 ) {
+                $sql = ' WHERE '.$sqlArrayNotEmpty[0];
+            }
+            if ( count($sqlArrayNotEmpty) == 2 ) {
+                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1];
+            }
+            if ( count($sqlArrayNotEmpty) == 3 ) {
+                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2];
+            }
+            if ( count($sqlArrayNotEmpty) == 4 ) {
+                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2] . ' AND ' . $sqlArrayNotEmpty[3];
+            }
+            $cruises = $this->cruiseModel->chercher($sql);
+            $ports = $this->portModel->getPorts();
+            $navires = $this->shipModel->getNavires();
+            if ($cruises) {
+                $data = [
+                    'cruises' => $cruises,
+                    'ports' => $ports,
+                    'navires' => $navires
+                ];
+                $this->view('cruises/place', $data);
+            } else {
+                include_once APPROOT . '/views/inc/header.inc.php';
+                include_once APPROOT . '/views/inc/navbarUser.inc.php';
+                echo ('<p class="NotFound">Cruise Not Found</p>');
+            }
+        } else {
+            // get the Cruise
+            $cruises = $this->cruiseModel->getCruises();
+            $ports = $this->portModel->getPorts();
+            $navires = $this->navireModel->getNavires();
+            if ($cruises) {
+                $data = [
+                    'cruises' => $cruises,
+                    'ports' => $ports,
+                    'navires' => $navires
+                ];
+                $this->view('cruises/place', $data);
+            } else {
+                include_once APPROOT . '/views/inc/header.inc.php';
+                include_once APPROOT . '/views/inc/navbarUser.inc.php';
+                echo ('<p class="NotFound">Cruise Not Found</p>');
+            }
+        }
+
+    }
 }
 
 
