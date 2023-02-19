@@ -8,6 +8,7 @@ class cruiseController extends Controller
     private $roomModel;
     private $reservationModel;
     private $portModel;
+    private $shipModel;
     public function __construct()
     {
         $this->cruiseModel = $this->model('Cruise');
@@ -15,6 +16,8 @@ class cruiseController extends Controller
         $this->type_roomModel = $this->model('RoomTypes');
         $this->roomModel = $this->model('Room');
         $this->reservationModel = $this->model('reservation');
+        $this->shipModel = $this->model('ship');
+        $this->portModel = $this->model('port');
         
     }
 
@@ -64,8 +67,12 @@ class cruiseController extends Controller
     public function booking()
     {
         $cards = $this->cruiseModel->getCruises();
+        $ports = $this->portModel->getport();
+            $navires = $this->shipModel->getship();
         $data=[
-            'cards'=>$cards
+            'cards'=>$cards,
+            'ports' => $ports,
+                    'navires' => $navires
         ];
 
         $this->view('booking',$data);
@@ -197,39 +204,32 @@ class cruiseController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $ship = $_POST['ship'];
-            $port = $_POST['PortArr'];
-            $portDe = $_POST['PortDep'];
+            $portDe = $_POST['startPort'];
             $date = $_POST['date'];
 
             if ($ship != 0) {
-                $sqlNav = 'id_nav ='.$ship;
+                $sqlNav = 'ship ='.$ship;
             }else{
                 $sqlNav = '';
             }
 
-            if ($port != 0) {
-                $sqlportAR = 'port_dar ='.$port;
-            }else{
-                $sqlportAR = '';
-            }
             
             if ($portDe != 0) {
-                $sqlportDe = 'port_dep ='.$portDe;
+                $sqlportDe = 'start_port ='.$portDe;
             }else{
                 $sqlportDe = '';
             }
 
             if ($date != '' && !empty($date)) {
-                $sqldate = 'date_dep ="'.$date.'"';
+                $sqldate = 'MONTH(start_date) ="'.$date.'"';
             }else{
                 $sqldate = '';
             }
 
             $sqlArray = [
                 '0' => $sqlNav,
-                '1' => $sqlportAR,
-                '2' => $sqlportDe,
-                '3' => $sqldate
+                '1' => $sqlportDe,
+                '2' => $sqldate
             ];
             $sqlArrayNotEmpty = [];
             for ($i=0; $i < count($sqlArray); $i++) {
@@ -251,40 +251,39 @@ class cruiseController extends Controller
             if ( count($sqlArrayNotEmpty) == 3 ) {
                 $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2];
             }
-            if ( count($sqlArrayNotEmpty) == 4 ) {
-                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2] . ' AND ' . $sqlArrayNotEmpty[3];
-            }
-            $cruises = $this->cruiseModel->chercher($sql);
-            $ports = $this->portModel->getPorts();
-            $navires = $this->shipModel->getNavires();
+            $cruises = $this->cruiseModel->search($sql);
+            $ports = $this->portModel->getport();
+            $navires = $this->shipModel->getship();
             if ($cruises) {
                 $data = [
-                    'cruises' => $cruises,
+                    'cards' => $cruises,
                     'ports' => $ports,
                     'navires' => $navires
                 ];
-                $this->view('cruises/place', $data);
+                $this->view('booking', $data);
             } else {
-                include_once APPROOT . '/views/inc/header.inc.php';
-                include_once APPROOT . '/views/inc/navbarUser.inc.php';
-                echo ('<p class="NotFound">Cruise Not Found</p>');
+                require_once "../App/views/include/navbar.php";
+                echo ('<p class="NotFound">Cruise Not Found</p>
+                ');
+                require_once "../App/views/include/footer.php";
             }
         } else {
             // get the Cruise
             $cruises = $this->cruiseModel->getCruises();
-            $ports = $this->portModel->getPorts();
-            $navires = $this->navireModel->getNavires();
+            $ports = $this->portModel->getport();
+            $navires = $this->shipModel->getship();
             if ($cruises) {
                 $data = [
-                    'cruises' => $cruises,
+                    'cards' => $cruises,
                     'ports' => $ports,
                     'navires' => $navires
                 ];
-                $this->view('cruises/place', $data);
+                $this->view('booking', $data);
             } else {
-                include_once APPROOT . '/views/inc/header.inc.php';
-                include_once APPROOT . '/views/inc/navbarUser.inc.php';
-                echo ('<p class="NotFound">Cruise Not Found</p>');
+                require_once "include/navbar.php";
+                echo ('<p class="NotFound">Cruise Not Found</p>
+                ');
+                require_once "include/footer.php";
             }
         }
 

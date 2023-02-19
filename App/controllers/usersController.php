@@ -16,59 +16,64 @@ class usersController extends Controller
             $data = [
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password'])
-               
             ];
 
-        
+
             if ($this->userModel->getUserByEmail($data['email'])) {
-                // user found
-                
-            }
-        
-            if (empty($data['email_error']) && empty($data['password_error'])) {
-                // Validated
+
                 // Check and set logged in user
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-        
+
                 if ($loggedInUser) {
-                    // Create session
-                      $this->createUserSession($loggedInUser);
-                      $this->view('home');
-                } else {
-                    $data['password_error'] = 'Incorrect password';
-                    $this->view('login', $data);
+
+
+                    $this->createUserSession($loggedInUser);
+
+                    //   $this->view('home');
+
+                    // } if($_SESSION['role'] == 0){
+
+                    //     $this->view('home');
+                    // }
+                    // if($_SESSION['role'] == 1){
+
+                    $this->view('home');
+                }else{
+                    
+                    $this->view('login');
                 }
-            } 
-        
-            $email = $data['email'];
-            $password = $data['password'];
-            
-        } else {
-        
-            // Load view
-            $this->view('login');
+
+
+
+
+            } else {
+
+                // Load view
+                $this->view('register');
+            }
         }
-        
     }
-        public function createUserSession($user){
-            $_SESSION['Id'] = $user->Id;
-            $_SESSION['email'] = $user->email;
-            $_SESSION['name'] = $user->name;
-            
-           
-          }
 
-        public function logOut(){
+    public function createUserSession($user)
+    {
+        $_SESSION['Id'] = $user->Id;
+        $_SESSION['email'] = $user->email;
+        $_SESSION['name'] = $user->name;
+        $_SESSION['role'] = $user->role;
+    }
 
-           $_SESSION['Id'] = null ;
-           $_SESSION['email']= null ;
-           $_SESSION['name']= null ;
+    public function logOut()
+    {
 
-           session_destroy();
+        $_SESSION['Id'] = null;
+        $_SESSION['email'] = null;
+        $_SESSION['name'] = null;
+        $_SESSION['role'] = null;
 
-           $this->view('login');
+        session_destroy();
 
-        }
+        $this->view('login');
+    }
 
 
     /////////////////////////////////////////////////////////////////
@@ -122,16 +127,16 @@ class usersController extends Controller
                 empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err'])
                 && empty($data['confirm_password_err'])
             ) {
-                
-                // Hash password
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        // Register User
-        if ($this->userModel->register($data)) {
-            $this->view('login');
-        } else {
-          die('Something went wrong');
-        }
+                // Hash password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                // Register User
+                if ($this->userModel->register($data)) {
+                    $this->view('login');
+                } else {
+                    die('Something went wrong');
+                }
             } else {
                 //load view with errors
                 $this->view('register', $data);
@@ -157,14 +162,3 @@ class usersController extends Controller
         $this->view('home');
     }
 }
-
-
-            
-    
-
-            
-            
-            
-            
-        
-      
