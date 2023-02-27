@@ -25,17 +25,18 @@ class Cruise{
     }
 
 
-    public function insertCruise($name, $ship ,$price,$picture ,$nights,$ports){
+    public function insertCruise($name, $ship ,$price,$picture ,$nights,$ports,$date){
         
 
-            $this->db->query("INSERT INTO `cruise` (`name`, `ship`, `price`,`picture`, `nights_number` ,`start_port`)
-            VALUES     (:name,:ship,:price,:picture,:nights,:ports)");
+            $this->db->query("INSERT INTO `cruise` (`name`, `ship`, `price`,`picture`, `nights_number` ,`start_port`, `start_date`)
+            VALUES     (:name,:ship,:price,:picture,:nights,:ports,:start_date)");
             $this->db->bind(':name',$name);
             $this->db->bind(':ship',$ship);
             $this->db->bind(':price',$price);
             $this->db->bind(':picture',$picture);
             $this->db->bind(':nights',$nights);
             $this->db->bind(':ports',$ports);
+            $this->db->bind(':start_date',$date);
             // $this->db->bind(':Picture',$Picture);
             if ($this->db->execute()) {
                 return true;

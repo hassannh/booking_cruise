@@ -45,6 +45,7 @@ class booking{
     public function deleteBooking ($id){
        
         $this->db->query("DELETE FROM reservation WHERE id_reservation = :id");
+     
        $this->db->bind(':id',$id);
        if ($this->db->execute()) {
         return true;

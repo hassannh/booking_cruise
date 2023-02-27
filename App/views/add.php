@@ -18,6 +18,10 @@
                 <input type="file" name="picture" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="picture" />
             </div>
             <div>
+                <label for="Date" class="text-sm text-gray-700 block mb-1 font-medium">Date</label>
+                <input type="date" name="Date" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Date" />
+            </div>
+            <div>
                 <label for="nights" class="text-sm text-gray-700 block mb-1 font-medium">Nights</label> <input type="number" name="nights" class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="nights number" />
             </div>
             <div>

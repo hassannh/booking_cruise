@@ -26,6 +26,17 @@ class Pages extends Controller
     }
 
     
+    public function home2()
+    {
+
+        $data = [
+            'title' => 'HomePage2'
+        ];
+
+        $this->view('home2', $data);
+    }
+
+    
 
 
     public function booking()

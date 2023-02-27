@@ -53,9 +53,10 @@ class cruiseController extends Controller
             $picture = $_POST['picture'];
             $nights = $_POST['nights'];
             $ports = $_POST['ports'];
-           
+            $Date = $_POST['Date'];
+        
             
-            $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports);
+            $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports,$Date);
             return $this->Admin();
         }else{
             $this->view('add_cruise');
@@ -193,8 +194,29 @@ class cruiseController extends Controller
     public function delete_ticket($id)
     {
        
-        $this->bookingModel->deleteBooking($id);
-        $this->ticket();
+        $reservation = $this->reservationModel->getreservation($id);
+        $date = $reservation->date_reservation;
+        $dateArray = explode('-', $date);
+        $year = $dateArray[0];
+        $month = $dateArray[1];
+        $day = $dateArray[2];
+        $current_year = date('Y');
+        $current_month = date('m');
+        $current_day = date('d');
+
+        if($year == $current_year && $month == $current_month && ($day - $current_day) > 2) {
+            $this->bookingModel->deleteBooking($id);
+        } 
+        elseif($year == $current_year && $month > $current_month) {
+            $this->bookingModel->deleteBooking($id);
+        }elseif($year > $current_year) {
+            $this->bookingModel->deleteBooking($id);
+        }else{
+            echo 'You can not delete reservation';
+            redirectTime('cruiseController/ticket');
+            exit;
+        } 
+        redirect('cruiseController/ticket');
     }
 
 

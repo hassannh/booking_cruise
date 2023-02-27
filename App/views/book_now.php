@@ -34,8 +34,7 @@
     <label for="Price">cruise price</label>
     <input type="text" readonly name="Price" value="<?= $data['cruise']->price ?> DH">
 
-    <label for="date">booking date</label>
-    <input type="date" name="date" placeholder="Booking date" required="required">
+    <input type="hidden"  name="date" value="<?= $data['cruise']->start_date ?>">
 
     <label for="id_roomType_price">room type</label>
     <select name="id_roomType_price" required="required">
