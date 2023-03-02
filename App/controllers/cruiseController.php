@@ -54,6 +54,11 @@ class cruiseController extends Controller
             $nights = $_POST['nights'];
             $ports = $_POST['ports'];
             $Date = $_POST['Date'];
+
+            // echo '<pre>';
+            // var_dump($_POST);
+            // echo '</pre>';
+            // exit;
         
             
             $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports,$Date);
@@ -68,11 +73,11 @@ class cruiseController extends Controller
     public function booking()
     {
         $cards = $this->cruiseModel->getCruises();
-        $ports = $this->portModel->getport();
+        // $ports = $this->portModel->getport();
             $navires = $this->shipModel->getship();
         $data=[
             'cards'=>$cards,
-            'ports' => $ports,
+            // 'ports' => $ports,
                     'navires' => $navires
         ];
 
@@ -88,7 +93,13 @@ class cruiseController extends Controller
        
 
         $Price = (float)$_POST['Price'];
-        $date_reservation = $_POST['date'];
+        // $date_reservation = $_POST['date'];
+
+
+
+        $port = $_POST['port'];
+
+
 
         $id_roomType_price = $_POST['id_roomType_price'];
         $roomTypeArray = explode(' ',$id_roomType_price);
@@ -104,7 +115,7 @@ class cruiseController extends Controller
 
         $ID_user = $_SESSION['Id'];
 
-        $this->reservationModel->insertReservation($ID_user, $date_reservation ,$price_reservation ,$id_Room,$ID_cruise); 
+        $this->reservationModel->insertReservation($ID_user ,$port,$price_reservation ,$id_Room,$ID_cruise); 
         
         $this->book_now($ID_cruise);
         }else{
@@ -142,6 +153,7 @@ class cruiseController extends Controller
             $data=[
                 // 'cruise'=> $cruise,
                 'reservations' => $reservation
+                
             ];
             
             $this->view('ticket',$data);
@@ -154,10 +166,13 @@ class cruiseController extends Controller
     {
         $cruise = $this->cruiseModel->getCruise($id);
         $room_type = $this->type_roomModel->getRoomTypes();
+        $port = $this->portModel->getports();
         $data = [
             'cruise'=>$cruise,
-            'roomType'=> $room_type
+            'roomType'=> $room_type,
+            'ports'=>$port
         ];
+     
         $this->view('book_now',$data);
     }
 

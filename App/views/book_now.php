@@ -40,13 +40,26 @@
         </option>
       <?php endforeach ?>
     </select>
-    <label for="id_roomType_price">Ports</label>
-    <select>
+    <label for="port">Port 1</label>
+    <select name="port">
       <option selected disabled>ports</option>
       <?php foreach ($data['ports'] as $port) : ?>
 
-        <option value="<?= $port->id . ' ' . $port->name ?>">
-          <?= $port->id . ':' . $port->name . ' $' ?>
+        <option value="<?= $port->id ?>">
+          <?= $port->name ?>
+        </option>
+
+      <?php endforeach ?>
+
+    </select>
+    
+    <label for="port">Port 2</label>
+    <select name="port">
+      <option selected disabled>ports</option>
+      <?php foreach ($data['ports'] as $port) : ?>
+
+        <option value="<?= $port->id ?>">
+          <?= $port->name ?>
         </option>
 
       <?php endforeach ?>

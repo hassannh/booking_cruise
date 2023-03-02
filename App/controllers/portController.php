@@ -26,14 +26,14 @@ public function add_port()
             $name = $_POST['name'];
           
             $this->portModel->insertport($name);
-            return $this->view('admin');
+            return $this->Admin_ports();
         }else{
             $this->view('add_port');
         }
         
     }
 
-    public function Admin_ports()
+    public function admin_ports()
     {
        // get the port
        $ports = $this->portModel->getport();

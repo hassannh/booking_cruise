@@ -11,13 +11,21 @@ class port{
     }
 
     public function getport(){
-        $stmt= $this->db->query("SELECT * FROM port ");
-        $stmt->execute();
-        return $stmt->fetchAll();
+        $this->db->query("SELECT * FROM port ");
+        // $this->db->bind(':id',$id);
+        $this->db->execute();
+        return $this->db->fetchAll();
       
      
          }
-
+         
+         public function getports(){
+             $this->db->query("SELECT * FROM port ");
+             $this->db->execute();
+             return $this->db->fetchAll();
+           
+          
+              }
 
     public function insertport($name){
        
@@ -51,6 +59,3 @@ class port{
 
 
 }
-
-
-    ?>

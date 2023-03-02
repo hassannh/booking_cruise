@@ -52,10 +52,10 @@
                              <?php foreach ($data["ports"]  as $port) : ?>
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port['id'] ?></td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port['name'] ?></td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port->id ?></td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port->name ?></td>
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="<?= URLROOT ?>portController/delete_port/<?= $port['id'] ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                                        <a href="<?= URLROOT ?>portController/delete_port/<?= $port->id ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?> 
@@ -66,9 +66,9 @@
             </div>
         </div>
     </div>
-    <a href="<?= URLROOT ?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Cruise</a>
-    <a href="<?= URLROOT ?>Pages/add_port" class="btn btn-sm btn-primary mx-5"><i class="fa fa-plus"></i> New Port</a>
-    <a href="<?= URLROOT ?>Pages/add" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Ship</a>
+    
+    <a href="<?= URLROOT ?>pages/add_port" class="btn btn-sm btn-primary mx-5"><i class="fa fa-plus"></i> New Port</a>
+    
 </div>
 
 
