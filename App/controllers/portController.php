@@ -34,6 +34,28 @@ public function add_port()
         
     }
 
+    public function Admin_ports()
+    {
+       // get the Cruise
+       $ports = $this->portModel->getport();
+
+
+       if ($ports) {
+           $data = [
+               'ports' => $ports
+                   ];
+           $this->view('Admin_ports',$data);
+       } else {
+           echo('ports not found');
+       }
+   }
+
+
+   public function delete_port($id){
+    $this->portModel->deleteport($id);
+    return $this->Admin_ports();
+}
+
 
 }
 

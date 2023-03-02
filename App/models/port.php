@@ -35,10 +35,18 @@ class port{
     }
 
 
-    public function deleteport ($id){
-        $sql ="DELETE FROM port WHERE id=:id";
-       $stmt= $this->db->query($sql);
-       $stmt->bindValue(':id',$id);
+   
+
+      public function deleteport ($id){
+       
+        $this->db->query("DELETE FROM port WHERE id=:id");
+       $this->db->bind(':id',$id);
+       if ($this->db->execute()) {
+        return true;
+       } else {
+        return false;
+       }
+       
       }
 
 
