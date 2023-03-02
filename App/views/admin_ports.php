@@ -17,7 +17,7 @@
             <div class="gap-3 flex flex-row justify-center mb-5">
                 <a href="<?= URLROOT ?>cruiseController/admin" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Cruises</a>
                 <a href="<?= URLROOT ?>portController/admin_ports" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Ports</a>
-                <a href="<?= URLROOT ?>Pages/add" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Shipes</a>
+                <a href="<?= URLROOT ?>navireController/admin_ships" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Ships</a>
             </div>
 
 
@@ -55,7 +55,7 @@
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port['id'] ?></td>
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><?= $port['name'] ?></td>
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="<?= URLROOT ?>portController/delete_port/<?= $port->id ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                                        <a href="<?= URLROOT ?>portController/delete_port/<?= $port['id'] ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?> 

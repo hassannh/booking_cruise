@@ -1,6 +1,5 @@
 <?php
 
-
 class portcontroller extends Controller{
 
 public $portModel;
@@ -36,7 +35,7 @@ public function add_port()
 
     public function Admin_ports()
     {
-       // get the Cruise
+       // get the port
        $ports = $this->portModel->getport();
 
 

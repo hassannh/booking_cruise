@@ -22,19 +22,14 @@
     display: flex;
     justify-content: center;
   }
-
-
-
 </style>
 <div class="formReserve ml-6">
-  <form class="ReserveForm" action="<?=URLROOT?>cruiseController/reservation" method="POST">
+  <form class="ReserveForm" action="<?= URLROOT ?>cruiseController/reservation" method="POST">
 
     <input type="hidden" name="id_cruise" value="<?= $data['cruise']->ID_cruise ?>">
 
     <label for="Price">cruise price</label>
     <input type="text" readonly name="Price" value="<?= $data['cruise']->price ?> DH">
-
-    <input type="hidden"  name="date" value="<?= $data['cruise']->start_date ?>">
 
     <label for="id_roomType_price">room type</label>
     <select name="id_roomType_price" required="required">
@@ -44,6 +39,18 @@
           <?= $roomType->name . ':' . $roomType->price . ' $' ?>
         </option>
       <?php endforeach ?>
+    </select>
+    <label for="id_roomType_price">Ports</label>
+    <select>
+      <option selected disabled>ports</option>
+      <?php foreach ($data['ports'] as $port) : ?>
+
+        <option value="<?= $port->id . ' ' . $port->name ?>">
+          <?= $port->id . ':' . $port->name . ' $' ?>
+        </option>
+
+      <?php endforeach ?>
+
     </select>
 
     <div class="reserveSubmit">
