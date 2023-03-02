@@ -20,13 +20,13 @@ class port{
 
 
     public function insertport($name){
-     
-        $sql =("INSERT INTO 'port'(name) VALUES (:name) ");
+       
+        $sql =("INSERT INTO port (name) VALUES (:name) ");
         
-        $stmt=$this->db->query($sql);
-        $stmt->bindValue(':name',$name);
-        $stmt->execute();
-        if ($stmt->rowCount()>0) {
+        $this->db->query($sql);
+        $this->db->bind(':name',$name);
+        $this->db->execute();
+        if ($this->db->rowCount()>0) {
             return true;
         } else {
             return false;
