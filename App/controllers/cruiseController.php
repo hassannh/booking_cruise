@@ -11,7 +11,7 @@ class cruiseController extends Controller
     private $shipModel;
     public function __construct()
     {
-        $this->cruiseModel = $this->model('Cruise');
+        $this->cruiseModel = $this->model('cruise');
         $this->bookingModel = $this->model('booking');
         $this->type_roomModel = $this->model('RoomTypes');
         $this->roomModel = $this->model('Room');
@@ -54,14 +54,13 @@ class cruiseController extends Controller
             $nights = $_POST['nights'];
             $ports = $_POST['ports'];
             $Date = $_POST['Date'];
+            $trajet = $_POST['trajet'];
 
             // echo '<pre>';
             // var_dump($_POST);
             // echo '</pre>';
             // exit;
-        
-            
-            $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports,$Date);
+            $this->cruiseModel->insertCruise($name,$ship ,$price,$picture ,$nights,$ports,$Date, $trajet);
             return $this->Admin();
         }else{
             $this->view('add_cruise');
@@ -70,13 +69,22 @@ class cruiseController extends Controller
     }
 
 
-    public function booking()
+    function gettrajet(){
+        $id_cruise=$_POST['id_cruise'];
+        $trajet=$this->cruiseModel->gettrajet($id_cruise);
+        echo json_encode($trajet); 
+    }
+
+
+    public function booking(                )
     {
         $cards = $this->cruiseModel->getCruises();
+       
         // $ports = $this->portModel->getport();
             $navires = $this->shipModel->getship();
         $data=[
             'cards'=>$cards,
+           
             // 'ports' => $ports,
                     'navires' => $navires
         ];
@@ -167,9 +175,11 @@ class cruiseController extends Controller
         $cruise = $this->cruiseModel->getCruise($id);
         $room_type = $this->type_roomModel->getRoomTypes();
         $port = $this->portModel->getports();
+        $trajet = $this->cruiseModel->gettrajet($id);
         $data = [
             'cruise'=>$cruise,
             'roomType'=> $room_type,
+            'trajet'=>$trajet,
             'ports'=>$port
         ];
      
@@ -208,8 +218,10 @@ class cruiseController extends Controller
 
     public function delete_ticket($id)
     {
-       
-        $reservation = $this->reservationModel->getreservation($id);
+
+        $reservation = $this->reservationModel->getreservations($id);
+
+        
         $date = $reservation->date_reservation;
         $dateArray = explode('-', $date);
         $year = $dateArray[0];
@@ -219,8 +231,10 @@ class cruiseController extends Controller
         $current_month = date('m');
         $current_day = date('d');
 
+        
         if($year == $current_year && $month == $current_month && ($day - $current_day) > 2) {
             $this->bookingModel->deleteBooking($id);
+
         } 
         elseif($year == $current_year && $month > $current_month) {
             $this->bookingModel->deleteBooking($id);

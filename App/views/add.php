@@ -41,7 +41,7 @@
                 </select>
 
             </div>
-                        
+
             <div>
                 <label for="brithday" class="text-sm text-gray-700 block mb-1 font-medium">Port</label>
                 <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " name="ports">
@@ -54,9 +54,22 @@
                 </select>
 
             </div>
-            
+
+            <div class="mb-3">
+                <label class="form-label">Escale a:</label><br>
+                <div class="container">
+                    <div class="row">
+                        <?php foreach ($data['port'] as $port) : ?>
+                            <div class="col-md-6">
+                                <input type="checkbox" name="trajet[]" value="<?= $port->id ?>" id="<?= $port->id ?>" class="check">&nbsp;<label for="check"><?= $port->name  ?></label>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        
+
         <div class="space-x-4 mt-8">
             <button name="submit" type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">Creat</button>
             <!-- Secondary -->

@@ -57,6 +57,7 @@ class Pages extends Controller
             'port' => $port,
             'ship'=>$ship
         ];
+
         $this->view('add', $data);
     }
 
@@ -76,7 +77,14 @@ class Pages extends Controller
         ];
         $this->view('ticket', $data);
     }
-
+    
+    public function add_port()
+    {
+        $data = [
+            'title' => 'add_port'
+        ];
+        $this->view('add_port', $data);
+    }
 
     public function edite()
     {
@@ -96,6 +104,28 @@ class Pages extends Controller
     }
 
 
+    
+    
+    public function Admin_ports()
+    {
+        $data = [
+            'title' => 'Admin_ports'
+        ];
+        $this->view('Admin_ports', $data);
+    }
+
+
+
+    
+    public function admin_ships()
+    {
+        $data = [
+            'title' => 'admin_ships'
+        ];
+        $this->view('admin_ships', $data);
+    }
+
+
     public function login()
     {
         $data = [
@@ -103,6 +133,9 @@ class Pages extends Controller
         ];
         $this->view('login', $data);
     }
+
+
+
 
     public function register()
     {

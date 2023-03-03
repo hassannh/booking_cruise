@@ -16,7 +16,7 @@
                 </div>
             </div>
             <h3 class="font-black text-gray-800 md:text-3xl text-xl"><?= $reservation->name ?></h3>
-            <p class="md:text-lg text-gray-500 text-base">¤ start port : <?= $reservation->start_port ?><br>¤ start date : <?= $reservation->start_date ?></p>
+            <p class="md:text-lg text-gray-500 text-base">¤ ports : <?= $reservation->name ?><br>¤ start date : <?= $reservation->start_date ?></p>
             <p class="text-xl font-black text-gray-800">
                 $<?= $reservation->price_reservation ?>
                 <span class="font-normal text-gray-600 text-base"> / <?= $reservation->nights_number ?> nights</span>

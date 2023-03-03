@@ -29,14 +29,25 @@ class Reservation{
         
     }
 
-    public function getreservation($id)
+    public function getreservation()
     {
-        $sql = "SELECT * FROM reservation WHERE id_reservation = :id";
+        $sql = "SELECT 
+        reservation.* , port.name as ports
+        FROM reservation inner join port where reservation.port = port.id" ;
+        $this->db->query($sql);
+        $this->db->execute();
+        return $this->db->fetch();
+
+    }
+
+    public function getreservations($id)
+    {
+      
+        $sql = "SELECT * FROM reservation";
         $this->db->query($sql);
         $this->db->bind(':id',$id);
         $this->db->execute();
         return $this->db->fetch();
-
     }
 
     public function getreservationByUserID($id)
@@ -51,3 +62,6 @@ class Reservation{
 
 
 }
+
+
+?>
