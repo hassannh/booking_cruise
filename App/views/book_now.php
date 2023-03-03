@@ -46,18 +46,11 @@
     <select name="trajet" required="required">
       <option selected disabled>trajet</option>
       <?php foreach ($data['trajet'] as $escale) : ?>
-        <option value="<?= $escale->id ?>">
-          <?= $escale->name ?>
+        <option value="<?= $escale ?>">
+          <?= $escale ?>
         </option>
       <?php endforeach ?>
     </select>
-
-    <p style="color: black;">
-      <?php foreach ($data['trajet'] as $escale) : ?>
-        <?= $escale->name ?>
-      <?php endforeach; ?>
-    </p>
-
     <label for="port">Port 1</label>
     <select name="port">
       <option selected disabled>ports</option>

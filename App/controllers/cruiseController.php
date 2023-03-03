@@ -97,15 +97,21 @@ class cruiseController extends Controller
     {
         if(isset($_POST['submit'])){
 
+    
         $ID_cruise = (int)$_POST['id_cruise'];
        
 
         $Price = (float)$_POST['Price'];
-        // $date_reservation = $_POST['date'];
+
+
+        $trajet = $_POST['trajet'];
 
 
 
         $port = $_POST['port'];
+
+
+      
 
 
 
@@ -122,8 +128,10 @@ class cruiseController extends Controller
         $id_Room = $room->id;
 
         $ID_user = $_SESSION['Id'];
+      
 
-        $this->reservationModel->insertReservation($ID_user ,$port,$price_reservation ,$id_Room,$ID_cruise); 
+        $this->reservationModel->insertReservation($ID_user ,$port,$price_reservation,$trajet ,$id_Room,$ID_cruise); 
+
         
         $this->book_now($ID_cruise);
         }else{
