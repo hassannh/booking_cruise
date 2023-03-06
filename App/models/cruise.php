@@ -13,13 +13,14 @@ class Cruise
     {
         $this->db->query("SELECT 
         cruise.* , port.name as start_port
-        FROM cruise inner join port where cruise.id_port = port.id");
+        FROM cruise inner join port where cruise.id_port = port.id and
+        (YEAR(start_date) = YEAR(NOW()) AND  MONTH(start_date) >= MONTH(NOW()) AND DAY(start_date) >= DAY(NOW()))
+        OR (YEAR(start_date) > YEAR(NOW()))");
         $this->db->execute();
         return $this->db->fetchAll();
     }
+ 
 
-
-    
 
     function addtrajet($id_croi, $id_port)
     {
@@ -93,7 +94,11 @@ class Cruise
     public function search($sqlEnd)
     {
 
-        $sql = "SELECT * FROM cruise" . $sqlEnd;
+        $sql = "SELECT 
+        cruise.* , port.name as start_port
+        FROM cruise inner join port where cruise.id_port = port.id" . $sqlEnd." and
+        (YEAR(start_date) = YEAR(NOW()) AND  MONTH(start_date) >= MONTH(NOW()) AND DAY(start_date) >= DAY(NOW()))
+        OR (YEAR(start_date) > YEAR(NOW()))";
         $this->db->query($sql);
         $this->db->execute();
         $this->db->fetchAll();

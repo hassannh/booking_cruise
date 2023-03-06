@@ -17,7 +17,7 @@ class Reservation{
         
         $this->db->query($sql);
         $this->db->bind(':id_user',$ID_user);
-        // $this->db->bind(':date_reservation',$date_reservation);
+        // $this->db->bind(':date',$date);
         $this->db->bind(':port',$port);
         $this->db->bind(':price_reservation',$price_reservation);
         // $this->db->bind(':trajet ',$trajet);

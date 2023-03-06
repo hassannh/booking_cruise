@@ -41,17 +41,17 @@
         </option>
       <?php endforeach ?>
     </select>
-    <label for="trajet">trajet</label>
+    <!-- <label for="trajet">trajet</label> -->
 
-    <select name="trajet" required="required">
+    <!-- <select name="trajet" required="required">
       <option selected disabled>trajet</option>
       <?php foreach ($data['trajet'] as $escale) : ?>
         <option value="<?= $escale ?>">
           <?= $escale ?>
         </option>
       <?php endforeach ?>
-    </select>
-    <label for="port">Port 1</label>
+    </select> -->
+    <!-- <label for="port">Port 1</label>
     <select name="port">
       <option selected disabled>ports</option>
       <?php foreach ($data['ports'] as $port) : ?>
@@ -62,7 +62,7 @@
 
       <?php endforeach ?>
 
-    </select>
+    </select> -->
     <div class="reserveSubmit">
       <!-- <input class="btnMe btnMe3"  type="submit" value="Reserve"> -->
       <button for="submit" name="submit" type="submit" class="btn bnt primary">book Now</button>

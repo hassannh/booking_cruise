@@ -80,15 +80,16 @@ class cruiseController extends Controller
     {
         $cards = $this->cruiseModel->getCruises();
        
-        // $ports = $this->portModel->getport();
+        $ports = $this->portModel->getport();
+
             $navires = $this->shipModel->getship();
+            // $ports = $this->portModel->getports();
         $data=[
             'cards'=>$cards,
            
-            // 'ports' => $ports,
+            'ports' => $ports,
                     'navires' => $navires
         ];
-
         $this->view('booking',$data);
     }
 
@@ -102,9 +103,10 @@ class cruiseController extends Controller
        
 
         $Price = (float)$_POST['Price'];
+        
+        // $Price = $_POST['date'];
 
-
-        $trajet = $_POST['trajet'];
+        // $trajet = $_POST['trajet'];
 
 
 
@@ -130,7 +132,7 @@ class cruiseController extends Controller
         $ID_user = $_SESSION['Id'];
       
 
-        $this->reservationModel->insertReservation($ID_user ,$port,$price_reservation,$trajet ,$id_Room,$ID_cruise); 
+        $this->reservationModel->insertReservation($ID_user ,$port,$price_reservation ,$id_Room,$ID_cruise); 
 
         
         $this->book_now($ID_cruise);
@@ -229,18 +231,29 @@ class cruiseController extends Controller
 
         $reservation = $this->reservationModel->getreservations($id);
 
+        // echo '<pre>';
+        // var_dump($reservation);
+        // echo '</pre>';
+        // exit;
+
         
         $date = $reservation->date_reservation;
         $dateArray = explode('-', $date);
         $year = $dateArray[0];
         $month = $dateArray[1];
         $day = $dateArray[2];
+
+        // echo '<pre>';
+        // var_dump($id,$date,$year,$month,$day);
+        // echo '</pre>';
+        // exit;
+
         $current_year = date('Y');
         $current_month = date('m');
         $current_day = date('d');
 
         
-        if($year == $current_year && $month == $current_month && ($day - $current_day) > 2) {
+        if($year === $current_year && $month >= $current_month && ($day - $current_day) > 2) {
             $this->bookingModel->deleteBooking($id);
 
         } 
@@ -274,7 +287,7 @@ class cruiseController extends Controller
 
             
             if ($portDe != 0) {
-                $sqlportDe = 'start_port ='.$portDe;
+                $sqlportDe = 'id_port ='.$portDe;
             }else{
                 $sqlportDe = '';
             }
@@ -302,13 +315,13 @@ class cruiseController extends Controller
                 $sql = '';
             }
             if ( count($sqlArrayNotEmpty) == 1 ) {
-                $sql = ' WHERE '.$sqlArrayNotEmpty[0];
+                $sql = ' AND '.$sqlArrayNotEmpty[0];
             }
             if ( count($sqlArrayNotEmpty) == 2 ) {
-                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1];
+                $sql = ' AND ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1];
             }
             if ( count($sqlArrayNotEmpty) == 3 ) {
-                $sql = ' WHERE ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2];
+                $sql = ' AND ' . $sqlArrayNotEmpty[0] . ' AND ' . $sqlArrayNotEmpty[1] . ' AND ' . $sqlArrayNotEmpty[2];
             }
             $cruises = $this->cruiseModel->search($sql);
             $ports = $this->portModel->getport();
@@ -328,6 +341,7 @@ class cruiseController extends Controller
             }
         } else {
             // get the Cruise
+            // $cruises = $this->cruiseModel->getCruises();
             $cruises = $this->cruiseModel->getCruises();
             $ports = $this->portModel->getport();
             $navires = $this->shipModel->getship();
