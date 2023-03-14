@@ -46,7 +46,7 @@ class usersController extends Controller
                 }
             }else{
                 // user register failed
-                $this->view('register', $data);
+                $this->view('login', $data);
             }
 
         }

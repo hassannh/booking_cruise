@@ -7,3 +7,7 @@
 {
     header( "refresh:".$secondes.";url=".URLROOT.$file );
 }
+  function redirectNow($file,$secondes =0)
+{
+    header( "refresh:".$secondes.";url=".URLROOT.$file );
+}

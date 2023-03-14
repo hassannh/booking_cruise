@@ -27,49 +27,38 @@
   <form class="ReserveForm" action="<?= URLROOT ?>cruiseController/reservation" method="POST">
 
     <input type="hidden" name="id_cruise" value="<?= $data['cruise']->ID_cruise ?>">
+    <input type="hidden" name="port" value="<?= $data['cruise']->id_port ?>">
+    <input type="hidden" name="date" value="<?= $data['cruise']->start_date ?>">
 
     <label for="Price">cruise price</label>
     <input type="text" readonly name="Price" value="<?= $data['cruise']->price ?> DH">
 
     <label for="id_roomType_price">room type</label>
-
-    <select name="id_roomType_price" required="required">
-      <option selected disabled>room type</option>
-      <?php foreach ($data['roomType'] as $roomType) : ?>
-        <option value="<?= $roomType->id . ' ' . $roomType->price ?>">
-          <?= $roomType->name . ':' . $roomType->price . ' $' ?>
+    <input type="text" id="tbto" required="required" style="display: none;" name="tbto">
+    <select name="id_room" id="id_roomType_price" required="required" >
+      <option selected value="0">room type</option>
+      <?php foreach ($data['rooms'] as $rooms) : ?>
+        <option value="<?= $rooms->id . ' ' . $rooms->price ?>">
+          <?= $rooms->name . ':' . $rooms->price . ' $' ?>
         </option>
       <?php endforeach ?>
     </select>
-    <!-- <label for="trajet">trajet</label> -->
 
-    <!-- <select name="trajet" required="required">
-      <option selected disabled>trajet</option>
-      <?php foreach ($data['trajet'] as $escale) : ?>
-        <option value="<?= $escale ?>">
-          <?= $escale ?>
-        </option>
-      <?php endforeach ?>
-    </select> -->
-    <!-- <label for="port">Port 1</label>
-    <select name="port">
-      <option selected disabled>ports</option>
-      <?php foreach ($data['ports'] as $port) : ?>
-
-        <option value="<?= $port->id ?>">
-          <?= $port->name ?>
-        </option>
-
-      <?php endforeach ?>
-
-    </select> -->
     <div class="reserveSubmit">
-      <!-- <input class="btnMe btnMe3"  type="submit" value="Reserve"> -->
-      <button for="submit" name="submit" type="submit" class="btn bnt primary">book Now</button>
+
+      <button for="submit" id="btn_book_now" name="submit" type="submit" class="btn bnt primary">book Now</button>
     </div>
   </form>
 </div>
 
-
+<script>
+  var id_roomType_price = document.getElementById('id_roomType_price')
+  var tbto = document.getElementById('tbto')
+  id_roomType_price.addEventListener("change", function(event) {
+    var option = event.target.options[event.target.selectedIndex];
+    var value = option.value;
+    tbto.value =value
+  })
+</script>
 
 <?php require_once "include/footer.php"; ?>

@@ -8,16 +8,16 @@ class Reservation{
         $this->db = new DB;
     }
 
-    public function insertReservation($ID_user,$port ,$price_reservation,$id_Room,$ID_cruise){
+    public function insertReservation($ID_user,$port ,$price_reservation,$date,$id_Room,$ID_cruise){
 
       
     
-        $sql ="INSERT INTO reservation (ID_user, port, price_reservation , id_Room, ID_cruise) VALUES (:id_user,:port,:price_reservation ,:id_Room,:ID_cruise)";
+        $sql ="INSERT INTO reservation (ID_user, port, price_reservation,date_reservation , id_Room, ID_cruise) VALUES (:id_user,:port,:price_reservation,:date ,:id_Room,:ID_cruise)";
         // var_dump($sql);
         
         $this->db->query($sql);
         $this->db->bind(':id_user',$ID_user);
-        // $this->db->bind(':date',$date);
+        $this->db->bind(':date',$date);
         $this->db->bind(':port',$port);
         $this->db->bind(':price_reservation',$price_reservation);
         // $this->db->bind(':trajet ',$trajet);
@@ -45,8 +45,6 @@ class Reservation{
 
     public function getreservations($id)
     {
-
-   
         $sql = "SELECT * FROM reservation WHERE id_reservation = :id";
         $this->db->query($sql);
         $this->db->bind(':id',$id);
@@ -56,7 +54,7 @@ class Reservation{
 
     public function getreservationByUserID($id)
     {
-        $sql = "SELECT u.Id,r.*,c.* FROM users u,reservation r,cruise c WHERE u.Id=r.ID_user AND r.ID_cruise=c.ID_cruise AND u.Id=:id";
+        $sql = "SELECT u.Id,r.*,c.*,p.name as pname FROM users u,reservation r,cruise c,port p WHERE u.Id=r.ID_user AND r.ID_cruise=c.ID_cruise AND u.Id=:id and p.id = r.port";
         $this->db->query($sql);
         $this->db->bind(':id',$id);
         $this->db->execute();

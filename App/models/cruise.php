@@ -22,27 +22,17 @@ class Cruise
  
 
 
-    function addtrajet($id_croi, $id_port)
-    {
-        $sql = "
-        SET foreign_key_checks = 0;
-        INSERT INTO `trajet`(`id_port`, `id_cruise`) VALUES ('$id_croi', '$id_port')";
-        $stmt = $this->db->query($sql);
-        $stmt->execute();
-    }
-    
-    
-
-    function gettrajet($id_croi)
-    {
-        $this->db->query("select p.name from port p inner join trajet t on t.id_port=p.id and t.id_cruise=$id_croi ");
-        $this->db->execute();
-        return $this->db->fetch();
-    }
-
     public function getCruise($id)
     {
-        $this->db->query("SELECT * FROM cruise WHERE ID_cruise=:id");
+        $this->db->query("
+        SELECT c.*,p.name as portName,n.name as shipName,COUNT(r.id) as places FROM
+        cruise c 
+        JOIN navire n ON c.ship = n.id
+        JOIN port p ON c.id_port = p.id
+        JOIN room r ON r.ship = n.id
+        WHERE r.id NOT IN (SELECT id_Room from  reservation ) and c.ID_cruise = :id
+        GROUP by c.ID_cruise
+        ");
         $this->db->bind(':id', $id);
         $this->db->execute();
         return $this->db->fetch();
@@ -50,12 +40,12 @@ class Cruise
     
 
 
-    public function insertCruise($name, $ship, $price, $picture, $nights, $ports, $date,array $trajet)
+    public function insertCruise($name, $ship, $price, $picture, $nights, $ports, $date, $trajet)
     {
 
 
-        $this->db->query("INSERT INTO `cruise` (`name`, `ship`, `price`,`picture`, `nights_number` ,`id_port`, `start_date`)
-            VALUES     (:name,:ship,:price,:picture,:nights,:ports,:start_date)");
+        $this->db->query("INSERT INTO `cruise` (`name`, `ship`, `price`,`picture`, `nights_number` ,`id_port`, `start_date`,`trager`)
+            VALUES     (:name,:ship,:price,:picture,:nights,:ports,:start_date,:trajet)");
         $this->db->bind(':name', $name);
         $this->db->bind(':ship', $ship);
         $this->db->bind(':price', $price);
@@ -63,19 +53,9 @@ class Cruise
         $this->db->bind(':nights', $nights);
         $this->db->bind(':ports', $ports);
         $this->db->bind(':start_date', $date);
-
-        // $this->db->bind(':Picture',$Picture);
-        if ($this->db->execute()) {
-            $sql = "SELECT `ID_cruise` FROM `cruise` order by ID_cruise desc limit 1";
-            $stmt = $this->db->query($sql);
-            $this->db->execute();
-
-            $data = $stmt->fetch();
-            for ($i = 0; $i < count($trajet); $i++) {
-                $this->addtrajet($data['ID_cruise'], $trajet[$i]);
-            }
-            return true;
-        };
+        $this->db->bind(':trajet', $trajet);
+       $this->db->execute();
+       return true;
     }
 
     public function deletecruise($id) 
